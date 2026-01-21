@@ -1,0 +1,14 @@
+D:\KP\SoundNameRemover\SoundNameRemover\obj\Debug\net9.0\SoundNameRemover.GeneratedMSBuildEditorConfig.editorconfig
+D:\KP\SoundNameRemover\SoundNameRemover\obj\Debug\net9.0\SoundNameRemover.AssemblyInfoInputs.cache
+D:\KP\SoundNameRemover\SoundNameRemover\obj\Debug\net9.0\SoundNameRemover.AssemblyInfo.cs
+D:\KP\SoundNameRemover\SoundNameRemover\obj\Debug\net9.0\SoundNameRemover.csproj.CoreCompileInputs.cache
+D:\KP\SoundNameRemover\SoundNameRemover\bin\Debug\net9.0\SoundNameRemover.exe
+D:\KP\SoundNameRemover\SoundNameRemover\bin\Debug\net9.0\SoundNameRemover.deps.json
+D:\KP\SoundNameRemover\SoundNameRemover\bin\Debug\net9.0\SoundNameRemover.runtimeconfig.json
+D:\KP\SoundNameRemover\SoundNameRemover\bin\Debug\net9.0\SoundNameRemover.dll
+D:\KP\SoundNameRemover\SoundNameRemover\bin\Debug\net9.0\SoundNameRemover.pdb
+D:\KP\SoundNameRemover\SoundNameRemover\obj\Debug\net9.0\SoundNameRemover.dll
+D:\KP\SoundNameRemover\SoundNameRemover\obj\Debug\net9.0\refint\SoundNameRemover.dll
+D:\KP\SoundNameRemover\SoundNameRemover\obj\Debug\net9.0\SoundNameRemover.pdb
+D:\KP\SoundNameRemover\SoundNameRemover\obj\Debug\net9.0\SoundNameRemover.genruntimeconfig.cache
+D:\KP\SoundNameRemover\SoundNameRemover\obj\Debug\net9.0\ref\SoundNameRemover.dll
