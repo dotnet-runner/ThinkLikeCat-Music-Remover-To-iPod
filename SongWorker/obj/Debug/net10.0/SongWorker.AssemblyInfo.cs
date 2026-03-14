@@ -10,12 +10,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("SoundNameRemover")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("SongWorker")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+83b45ee0f1cbc1b469d6798d3f486edbcee1b355")]
-[assembly: System.Reflection.AssemblyProductAttribute("SoundNameRemover")]
-[assembly: System.Reflection.AssemblyTitleAttribute("SoundNameRemover")]
+[assembly: System.Reflection.AssemblyProductAttribute("SongWorker")]
+[assembly: System.Reflection.AssemblyTitleAttribute("SongWorker")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Создано классом WriteCodeFragment MSBuild.

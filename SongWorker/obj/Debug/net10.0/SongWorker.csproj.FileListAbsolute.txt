@@ -1,0 +1,12 @@
+D:\KP\SoundNameRemover\SongWorker\bin\Debug\net10.0\SongWorker.deps.json
+D:\KP\SoundNameRemover\SongWorker\bin\Debug\net10.0\SongWorker.dll
+D:\KP\SoundNameRemover\SongWorker\bin\Debug\net10.0\SongWorker.pdb
+D:\KP\SoundNameRemover\SongWorker\obj\Debug\net10.0\SongWorker.GeneratedMSBuildEditorConfig.editorconfig
+D:\KP\SoundNameRemover\SongWorker\obj\Debug\net10.0\SongWorker.AssemblyInfoInputs.cache
+D:\KP\SoundNameRemover\SongWorker\obj\Debug\net10.0\SongWorker.AssemblyInfo.cs
+D:\KP\SoundNameRemover\SongWorker\obj\Debug\net10.0\SongWorker.csproj.CoreCompileInputs.cache
+D:\KP\SoundNameRemover\SongWorker\obj\Debug\net10.0\SongWorker.sourcelink.json
+D:\KP\SoundNameRemover\SongWorker\obj\Debug\net10.0\SongWorker.dll
+D:\KP\SoundNameRemover\SongWorker\obj\Debug\net10.0\refint\SongWorker.dll
+D:\KP\SoundNameRemover\SongWorker\obj\Debug\net10.0\SongWorker.pdb
+D:\KP\SoundNameRemover\SongWorker\obj\Debug\net10.0\ref\SongWorker.dll

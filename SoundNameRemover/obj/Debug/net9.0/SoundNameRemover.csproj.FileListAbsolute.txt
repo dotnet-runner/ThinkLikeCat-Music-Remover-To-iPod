@@ -12,3 +12,4 @@ D:\KP\SoundNameRemover\SoundNameRemover\obj\Debug\net9.0\refint\SoundNameRemover
 D:\KP\SoundNameRemover\SoundNameRemover\obj\Debug\net9.0\SoundNameRemover.pdb
 D:\KP\SoundNameRemover\SoundNameRemover\obj\Debug\net9.0\SoundNameRemover.genruntimeconfig.cache
 D:\KP\SoundNameRemover\SoundNameRemover\obj\Debug\net9.0\ref\SoundNameRemover.dll
+D:\KP\SoundNameRemover\SoundNameRemover\obj\Debug\net9.0\SoundNameRemover.sourcelink.json
