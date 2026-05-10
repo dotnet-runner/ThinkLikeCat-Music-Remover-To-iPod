@@ -4,11 +4,13 @@ namespace SongWorker;
 
 internal class SongWorker: ISongWorker
 {
+    private static readonly SongWorker Instance = new();
+
     public List<string> AllSongsPaths { get; private set; } = new();
 
     private SongWorker() { }
     
-    public static SongWorker CreateSongWorker() => new ();
+    public static SongWorker CreateSongWorker() => Instance;
 
     public ISongWorker GetAllSongsPath(string directoryPath)
     {
@@ -52,27 +54,26 @@ internal class SongWorker: ISongWorker
         return this;
     }
     
-    public ISongWorker SaveTo(string newDirectory)
+    public void SaveTo(string newDirectory)
     {
         if(!Directory.Exists(newDirectory))
             Directory.CreateDirectory(newDirectory);
         
-        if(AllSongsPaths.Count == 0) return this;
+        if(AllSongsPaths.Count == 0) return;
         
-        Parallel.ForEach(AllSongsPaths, oldSongPath =>
-            {
-                var fileName = Path.GetFileName(oldSongPath);
-                
-                var newFileWay = Path.Combine(newDirectory, fileName);
-                
-                File.Move(oldSongPath, newFileWay, true);
-                
-                SaveLog(oldSongPath, newFileWay);
-            }
-        );
+        //Parallel.ForEach(AllSongsPaths, oldSongPath =>
+        foreach (var oldSongPath in AllSongsPaths)
+        {
+           var fileName = Path.GetFileName(oldSongPath);
+                           
+           var newFileWay = Path.Combine(newDirectory, fileName);
+           
+           File.Move(oldSongPath, newFileWay, true);
+           
+           SaveLog(oldSongPath, newFileWay); 
+        }
         
         Console.WriteLine("All songs have been removed");
-        return this;
     }
 
     private static void SaveLog(string oldFilePath, string newFilePath) =>

@@ -6,7 +6,7 @@ public interface ISongWorker
 
     public ISongWorker GetAllSongsPath(string directoryPath);
     
-    public ISongWorker SaveTo(string newFolderPath);
+    public void SaveTo(string newFolderPath);
     
     public static ISongWorker CreateISongWorker() => SongWorker.CreateSongWorker();
 }

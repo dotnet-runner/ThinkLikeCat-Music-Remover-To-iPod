@@ -1,8 +1,10 @@
 ﻿namespace OfficialSpotifyApiWorker;
 
-public class SpotifyApiWorker: ISpotifyApiWorker
+internal class SpotifyApiWorker: ISpotifyApiWorker
 {
-    
+    private SpotifyApiWorker() {}
+
+    public static SpotifyApiWorker CreateSpotifyApiWorker() => new ();
     
     
 }
