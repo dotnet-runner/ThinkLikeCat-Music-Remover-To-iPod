@@ -1,4 +1,4 @@
-﻿namespace SoundNameRemover;
+﻿namespace OfficialSpotifyApiWorker;
 
 public interface ISpotifyApiWorker
 {

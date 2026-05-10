@@ -1,10 +1,12 @@
-﻿namespace SoungWorker;
+﻿namespace SongWorker;
 
 public interface ISongWorker
 {
-    public IEnumerable<string> ToCorrectNameForm(IEnumerable<string> songsNames, params IEnumerable<string> garbageNames);
+    public ISongWorker ToCorrectNameForm(params string[] garbageNames);
 
-    public void SaveTo(string newPath, IEnumerable<string> songsNames);
+    public ISongWorker GetAllSongsPath(string directoryPath);
+    
+    public ISongWorker SaveTo(string newFolderPath);
     
     public static ISongWorker CreateISongWorker() => SongWorker.CreateSongWorker();
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\KP\\SoundNameRemover\\SongWorker\\SongWorker.csproj": {}
+    "D:\\KP\\SoundNameRemover\\OfficialSpotifyApiWorker\\OfficialSpotifyApiWorker.csproj": {}
   },
   "projects": {
-    "D:\\KP\\SoundNameRemover\\SongWorker\\SongWorker.csproj": {
+    "D:\\KP\\SoundNameRemover\\OfficialSpotifyApiWorker\\OfficialSpotifyApiWorker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\KP\\SoundNameRemover\\SongWorker\\SongWorker.csproj",
-        "projectName": "SongWorker",
-        "projectPath": "D:\\KP\\SoundNameRemover\\SongWorker\\SongWorker.csproj",
+        "projectUniqueName": "D:\\KP\\SoundNameRemover\\OfficialSpotifyApiWorker\\OfficialSpotifyApiWorker.csproj",
+        "projectName": "OfficialSpotifyApiWorker",
+        "projectPath": "D:\\KP\\SoundNameRemover\\OfficialSpotifyApiWorker\\OfficialSpotifyApiWorker.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "D:\\KP\\SoundNameRemover\\SongWorker\\obj\\",
+        "outputPath": "D:\\KP\\SoundNameRemover\\OfficialSpotifyApiWorker\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
