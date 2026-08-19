@@ -4,13 +4,11 @@ namespace SongWorker;
 
 internal class SongWorker: ISongWorker
 {
-    private static readonly SongWorker Instance = new();
+    public static readonly SongWorker Instance = new();
 
     public List<string> AllSongsPaths { get; private set; } = new();
 
     private SongWorker() { }
-    
-    public static SongWorker CreateSongWorker() => Instance;
 
     public ISongWorker GetAllSongsPath(string directoryPath)
     {
@@ -22,14 +20,6 @@ internal class SongWorker: ISongWorker
         AllSongsPaths.AddRange(songs);
 
         return this;
-    }
-
-    private static Regex CreateRemoverRegex(IEnumerable<string> garbageNames)
-    {
-        garbageNames = garbageNames.Select(name => '(' + Regex.Escape(name) + ')');
-        var removerString = string.Join('|', garbageNames);
-        
-        return new Regex(removerString, RegexOptions.Compiled | RegexOptions.RightToLeft);
     }
     
     public ISongWorker ToCorrectNameForm(params string[] garbageNames)
@@ -54,6 +44,14 @@ internal class SongWorker: ISongWorker
         return this;
     }
     
+    private static Regex CreateRemoverRegex(IEnumerable<string> garbageNames)
+    {
+        garbageNames = garbageNames.Select(name => '(' + Regex.Escape(name) + ')');
+        var removerString = string.Join('|', garbageNames);
+        
+        return new Regex(removerString, RegexOptions.Compiled | RegexOptions.RightToLeft);
+    }
+    
     public void SaveTo(string newDirectory)
     {
         if(!Directory.Exists(newDirectory))
@@ -61,7 +59,6 @@ internal class SongWorker: ISongWorker
         
         if(AllSongsPaths.Count == 0) return;
         
-        //Parallel.ForEach(AllSongsPaths, oldSongPath =>
         foreach (var oldSongPath in AllSongsPaths)
         {
            var fileName = Path.GetFileName(oldSongPath);

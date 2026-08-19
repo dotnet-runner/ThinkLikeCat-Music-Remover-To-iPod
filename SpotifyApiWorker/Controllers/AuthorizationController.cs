@@ -1,0 +1,63 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using SpotifyAPI.Web;
+using SpotifyApiWorker.Exceptions;
+using SpotifyApiWorker.Services.Contracts;
+
+namespace SpotifyApiWorker.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class AuthorizationController : ControllerBase
+{
+    private readonly IAuthorization _authorization;
+
+    public AuthorizationController(IAuthorization authorization)
+    {
+        _authorization = authorization;
+    }
+    
+    [HttpGet("login")]
+    public IActionResult Login()
+    {
+        var authUri = _authorization.CreateAuthorizationUri().ToString();
+        Console.WriteLine(authUri);
+        Response.Cookies.Append("State", _authorization.CookieStateContent());
+        return Redirect(authUri);
+    }
+
+    [HttpGet("callback")]
+    public async Task<IActionResult> Callback([FromQuery] string? code, [FromQuery] string? state, [FromQuery] string? error = null)
+    {
+        if (error is not null)
+        {
+            Console.WriteLine(error);
+            return Unauthorized("Authorization Error");
+        }
+
+        string accessToken;
+
+        try
+        {
+            accessToken = await _authorization.TryGetAuthorizationCode(code);
+        }
+        catch (NoAuthorizationCodeException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        catch (AuthorizationCodeTokenException ex)
+        {
+            return Unauthorized(ex.Message);
+        }
+        catch (AccessTokenException ex)
+        {
+            return Unauthorized(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex.Message);
+        }
+
+        var spotify = new SpotifyClient(accessToken);
+        return Ok(spotify);
+    }
+}

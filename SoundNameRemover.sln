@@ -1,10 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoundNameRemover", "SoundNameRemover\SoundNameRemover.csproj", "{AF64C5DA-A9C4-4284-917D-7C5079EE0D0B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotifySongDownloader", "SpotifySongDownloader\SpotifySongDownloader.csproj", "{AF64C5DA-A9C4-4284-917D-7C5079EE0D0B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SongWorker", "SongWorker\SongWorker.csproj", "{A28E18FC-E5E3-40D0-B5DC-E165E66BC94C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OfficialSpotifyApiWorker", "OfficialSpotifyApiWorker\OfficialSpotifyApiWorker.csproj", "{82DD0309-F530-47DF-A1E3-57EE3AE21E6B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotifyApiWorker", "SpotifyApiWorker\SpotifyApiWorker.csproj", "{62AEFBA8-A47A-45F4-8BA2-D159A7A8EE62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,9 +20,9 @@ Global
 		{A28E18FC-E5E3-40D0-B5DC-E165E66BC94C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A28E18FC-E5E3-40D0-B5DC-E165E66BC94C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A28E18FC-E5E3-40D0-B5DC-E165E66BC94C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{82DD0309-F530-47DF-A1E3-57EE3AE21E6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{82DD0309-F530-47DF-A1E3-57EE3AE21E6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{82DD0309-F530-47DF-A1E3-57EE3AE21E6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{82DD0309-F530-47DF-A1E3-57EE3AE21E6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62AEFBA8-A47A-45F4-8BA2-D159A7A8EE62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62AEFBA8-A47A-45F4-8BA2-D159A7A8EE62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62AEFBA8-A47A-45F4-8BA2-D159A7A8EE62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62AEFBA8-A47A-45F4-8BA2-D159A7A8EE62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
