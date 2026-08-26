@@ -12,6 +12,7 @@ builder.Services.Configure<RouteOptions>(options =>
 });
 
 builder.Services.AddScoped<IAuthorization, Authorization>();
+builder.Services.AddScoped<ICookieSigning, CookieSigning>();
 
 var app = builder.Build();
 
