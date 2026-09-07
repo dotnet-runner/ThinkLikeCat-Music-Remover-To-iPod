@@ -10,12 +10,10 @@ namespace SpotifyApiWorker.Controllers;
 public class AuthorizationController : ControllerBase
 {
     private readonly IAuthorization _authorization;
-    private readonly ICookieSigning _cookieSigning;
 
-    public AuthorizationController(IAuthorization authorization, ICookieSigning cookieSigning)
+    public AuthorizationController(IAuthorization authorization)
     {
         _authorization = authorization;
-        _cookieSigning = cookieSigning;
     }
     
     [HttpGet("login")]
@@ -23,8 +21,8 @@ public class AuthorizationController : ControllerBase
     {
         var authUri = _authorization.CreateAuthorizationUri().ToString();
         Console.WriteLine(authUri);
-        var cookieValue = _cookieSigning.CookieSign(_authorization.State).ToString();
-        Response.Cookies.Append("State", cookieValue);
+        /*var cookieValue = _cookieSigning.CookieSign(_authorization.State).ToString();
+        Response.Cookies.Append("State", cookieValue);*/
         return Redirect(authUri);
     }
 
@@ -34,14 +32,14 @@ public class AuthorizationController : ControllerBase
         if (error is not null)
             return Unauthorized("Authorization Error");
 
-        var cookieContent = Request.Cookies["State"] ?? string.Empty;
+        /*var cookieContent = Request.Cookies["State"] ?? string.Empty;
         if (!_cookieSigning.IsSignCorrect(cookieContent))
             return BadRequest("Authorization Error, cookie is not correct");
         
         if(state != _cookieSigning.CookieData(cookieContent))
             return Unauthorized("Authorization Error, URI and cookie is not same");
         
-        Response.Cookies.Delete("State");
+        Response.Cookies.Delete("State");*/
         
         string accessToken;
 
