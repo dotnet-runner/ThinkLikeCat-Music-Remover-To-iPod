@@ -11,7 +11,7 @@ public class Authorization: IAuthorization
 
     public Uri CreateAuthorizationUri()
     {
-        var login = new LoginRequest( _redirectUri, IMyInfo.ServerSpotifyClientId, LoginRequest.ResponseType.Code)
+        var login = new LoginRequest( _redirectUri, Environment.GetEnvironmentVariable("SERVER_SPOTIFY_CLIENT_ID")!, LoginRequest.ResponseType.Code)
         {
             State = State,
             Scope = [Scopes.UserReadPrivate, Scopes.UserReadEmail, Scopes.PlaylistReadPrivate]
@@ -30,7 +30,9 @@ public class Authorization: IAuthorization
         {
             response = await new OAuthClient().RequestToken(
                 new AuthorizationCodeTokenRequest(
-                    IMyInfo.ServerSpotifyClientId, IMyInfo.ServerSpotifyClientSecret, code, _redirectUri
+                    Environment.GetEnvironmentVariable("SERVER_SPOTIFY_CLIENT_ID")!,
+                    Environment.GetEnvironmentVariable("SERVER_SPOTIFY_CLIENT_SECRET")!,
+                    code, _redirectUri
                 )
             );
         }

@@ -11,8 +11,9 @@ builder.Services.Configure<RouteOptions>(options =>
     options.LowercaseUrls = true;
 });
 
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IAuthorization, Authorization>();
-builder.Services.AddScoped<ICookieSigning, CookieSigning>();
+builder.Services.AddScoped<ICookieService, CookieService>();
 
 var app = builder.Build();
 
