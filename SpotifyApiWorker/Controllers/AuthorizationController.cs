@@ -37,9 +37,9 @@ public class AuthorizationController : ControllerBase
             return BadRequest("Authorization Error, cookie is not correct");
         
         if(state != _cookieSigning.CookieData(cookieContent))
-            return Unauthorized("Authorization Error, URI and cookie is not same");*/
+            return Unauthorized("Authorization Error, URI and cookie is not same");
         
-        Response.Cookies.Delete("State");
+        Response.Cookies.Delete("State");*/
         
         string accessToken;
 

@@ -9,11 +9,16 @@ builder.Services.AddSwaggerGen();
 builder.Services.Configure<RouteOptions>(options => 
 {
     options.LowercaseUrls = true;
+    options.LowercaseQueryStrings = true;
+});
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration["Redis:ConnectionString"];
+    options.InstanceName = builder.Configuration["Redis:InstanceName"];
 });
 
-builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IAuthorization, Authorization>();
-builder.Services.AddScoped<ICookieService, CookieService>();
+builder.Services.AddScoped<ICookieSigning, CookieSigning>();
 
 var app = builder.Build();
 
