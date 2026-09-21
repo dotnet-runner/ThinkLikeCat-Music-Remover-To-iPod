@@ -10,19 +10,27 @@ namespace SpotifyApiWorker.Controllers;
 public class AuthorizationController : ControllerBase
 {
     private readonly IAuthorization _authorization;
+    private readonly IServerSessionKeyGenerator _sessionKeyGenerator;
+    private readonly ICookieSetting _cookieSetting;
+    private readonly IRedisService _redisService;
 
-    public AuthorizationController(IAuthorization authorization)
+    public AuthorizationController(IAuthorization authorization, ICookieSetting cookieSetting, IServerSessionKeyGenerator serverSessionKeyGenerator,
+        IRedisService redisService)
     {
         _authorization = authorization;
+        _cookieSetting = cookieSetting;
+        _sessionKeyGenerator = serverSessionKeyGenerator;
+        _redisService = redisService;
     }
     
     [HttpGet("login")]
-    public IActionResult Login()
+    public async Task<IActionResult> Login()
     {
         var authUri = _authorization.CreateAuthorizationUri().ToString();
-        Console.WriteLine(authUri);
-        /*var cookieValue = _cookieSigning.CookieSign(_authorization.State).ToString()*/;
-        //Response.Cookies.Append("State", cookieValue);
+        var key = _sessionKeyGenerator.Generate();
+        await _redisService.Write(key, _authorization.State);
+        Response.Cookies.Append("_userSessionKey", key.Value, 
+            _cookieSetting.SessionOptions(TimeSpan.FromMinutes(10)));
         return Redirect(authUri);
     }
 

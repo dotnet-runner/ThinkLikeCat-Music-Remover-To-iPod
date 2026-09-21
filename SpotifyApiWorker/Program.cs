@@ -1,5 +1,6 @@
 using SpotifyApiWorker.Services.Contracts;
 using SpotifyApiWorker.Services.Implementations;
+using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,14 +12,15 @@ builder.Services.Configure<RouteOptions>(options =>
     options.LowercaseUrls = true;
     options.LowercaseQueryStrings = true;
 });
-builder.Services.AddStackExchangeRedisCache(options =>
-{
-    options.Configuration = builder.Configuration["Redis:ConnectionString"];
-    options.InstanceName = builder.Configuration["Redis:InstanceName"];
-});
+
+builder.Services.AddSingleton<IServerSessionKeyGenerator, ServerSessionKeyGenerator>();
+builder.Services.AddSingleton<IConnectionMultiplexer>(options =>
+    ConnectionMultiplexer.Connect(builder.Configuration.GetValue<string>("Redis:ConnectionString")!));
 
 builder.Services.AddScoped<IAuthorization, Authorization>();
-builder.Services.AddScoped<ICookieService, CookieService>();
+builder.Services.AddScoped<ICookieSetting, CookieSetting>();
+builder.Services.AddScoped<IRedisService, RedisService>();
+
 
 var app = builder.Build();
 

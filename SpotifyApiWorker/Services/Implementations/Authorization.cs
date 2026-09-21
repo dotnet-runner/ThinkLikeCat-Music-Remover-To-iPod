@@ -8,7 +8,7 @@ public class Authorization: IAuthorization
 {
     private readonly Uri _redirectUri = new ("http://127.0.0.1:5000/api/authorization/callback");
     public string State { get; } = Guid.NewGuid().ToString();
-
+    
     public Uri CreateAuthorizationUri()
     {
         var login = new LoginRequest( _redirectUri, Environment.GetEnvironmentVariable("SERVER_SPOTIFY_CLIENT_ID")!, LoginRequest.ResponseType.Code)
@@ -24,7 +24,7 @@ public class Authorization: IAuthorization
     {
         if (string.IsNullOrWhiteSpace(code))
             throw new NoAuthorizationCodeException();
-
+        
         AuthorizationCodeTokenResponse response;
         try
         {
