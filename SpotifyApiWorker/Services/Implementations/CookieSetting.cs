@@ -8,12 +8,19 @@ public class CookieSetting: ICookieSetting
     {
         HttpOnly = true,
         Secure = true,
-        Path = "/"
+        Path = "/",
+        SameSite = SameSiteMode.Strict
     };
 
     public CookieOptions SessionOptions(TimeSpan age)
     {
         _baseOptions.MaxAge = age;
+        return _baseOptions;
+    }
+
+    public CookieOptions SpotifyStateSessionOptions(TimeSpan age)
+    {
+        _baseOptions.SameSite = SameSiteMode.Lax;
         return _baseOptions;
     }
 }

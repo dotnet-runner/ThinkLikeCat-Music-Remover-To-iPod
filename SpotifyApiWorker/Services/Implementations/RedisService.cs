@@ -13,8 +13,16 @@ public class RedisService: IRedisService
         _redisDbContext = redisConnect.GetDatabase();
     }
     
-    public Task Write(ServerSessionKey key, object value)
+    public async Task<string> GetAsync(string key) =>
+        await _redisDbContext.StringGetAsync(key);
+    
+    public Task WriteAsync(ServerSessionKey key, object value)
     {
         return _redisDbContext.StringAppendAsync(key.Value, value.ToString());
+    }
+    
+    public Task DeleteAsync(ServerSessionKey key)
+    {
+        return _redisDbContext.KeyDeleteAsync(key.Value, CommandFlags.FireAndForget);
     }
 }
