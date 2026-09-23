@@ -12,15 +12,14 @@ public class CookieSetting: ICookieSetting
         SameSite = SameSiteMode.Strict
     };
 
-    public CookieOptions SessionOptions(TimeSpan age)
+    public CookieOptions SessionOptions()
     {
-        _baseOptions.MaxAge = age;
         return _baseOptions;
     }
 
-    public CookieOptions SpotifyStateSessionOptions(TimeSpan age)
+    public CookieOptions SpotifyStateSessionOptions()
     {
         _baseOptions.SameSite = SameSiteMode.Lax;
-        return _baseOptions;
+        return SessionOptions();
     }
 }

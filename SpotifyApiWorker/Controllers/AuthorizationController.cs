@@ -35,7 +35,7 @@ public class AuthorizationController : ControllerBase
         await _redisService.WriteAsync(key, _authorization.State);
         
         Response.Cookies.Append("_userSessionKey", key.ToString(),
-            _cookieSetting.SpotifyStateSessionOptions(TimeSpan.FromMinutes(10)));
+            _cookieSetting.SpotifyStateSessionOptions());
         
         return Redirect(authUri);
     }
