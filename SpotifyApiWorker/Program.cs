@@ -1,4 +1,4 @@
-using SpotifyAPI.Web;
+using System.Text;
 using SpotifyApiWorker.Services.Contracts;
 using SpotifyApiWorker.Services.Implementations;
 using StackExchange.Redis;

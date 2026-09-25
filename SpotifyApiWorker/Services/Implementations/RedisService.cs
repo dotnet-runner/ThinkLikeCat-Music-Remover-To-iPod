@@ -16,9 +16,10 @@ public class RedisService: IRedisService
     public async Task<string> GetAsync(string key) =>
         await _redisDbContext.StringGetAsync(key);
     
-    public Task WriteAsync(ServerSessionKey key, object value)
+    public Task WriteAsync(ServerSessionKey key, object value, TimeSpan? lifetime = null)
     {
-        return _redisDbContext.StringAppendAsync(key.Value, value.ToString());
+        return lifetime is null ? _redisDbContext.StringSetAsync(key.Value, value.ToString())
+            : _redisDbContext.StringSetAsync(key.Value, value.ToString(), lifetime.Value);
     }
     
     public Task DeleteAsync(ServerSessionKey key)
