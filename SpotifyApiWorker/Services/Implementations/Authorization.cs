@@ -15,37 +15,34 @@ public class Authorization: IAuthorization
         {
             State = State,
             Scope = [Scopes.UserReadPrivate, Scopes.UserReadEmail, Scopes.PlaylistReadPrivate]
+            /*Scope = [Scopes.UgcImageUpload, Scopes.UserReadPlaybackState, Scopes.UserModifyPlaybackState,
+                Scopes.UserReadCurrentlyPlaying, Scopes.Streaming, Scopes.AppRemoteControl, Scopes.UserReadEmail, Scopes.UserReadPrivate, Scopes.PlaylistModifyPublic, Scopes.PlaylistReadPrivate, Scopes.PlaylistModifyPrivate, Scopes.UserLibraryModify, Scopes.UserLibraryRead, Scopes.UserTopRead, Scopes.UserReadPlaybackPosition, Scopes.UserReadRecentlyPlayed, Scopes.UserFollowRead, Scopes.UserFollowModify]*/
         };
         
         return login.ToUri();
     }
     
-    public async Task<string> TryGetAuthorizationCode(string? code)
+    public async Task<AuthorizationCodeTokenResponse> TryGetAuthorizationCode(string? code)
     {
         if (string.IsNullOrWhiteSpace(code))
             throw new NoAuthorizationCodeException();
         
-        AuthorizationCodeTokenResponse response;
         try
         {
-            response = await new OAuthClient().RequestToken(
+            var response = await new OAuthClient().RequestToken(
                 new AuthorizationCodeTokenRequest(
                     Environment.GetEnvironmentVariable("SERVER_SPOTIFY_CLIENT_ID")!,
                     Environment.GetEnvironmentVariable("SERVER_SPOTIFY_CLIENT_SECRET")!,
                     code, _redirectUri
                 )
             );
+
+            return response;
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Failed to request token: {ex.Message}");
             throw new AuthorizationCodeTokenException(ex.Message);
         }
-        var accessToken = response.AccessToken;
-        
-        if (string.IsNullOrWhiteSpace(accessToken))
-            throw new AccessTokenException();
-        
-        return accessToken;
     }
 }

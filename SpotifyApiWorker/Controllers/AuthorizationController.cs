@@ -12,15 +12,15 @@ public class AuthorizationController : ControllerBase
     private readonly IAuthorization _authorization;
     private readonly IServerSessionKeyGenerator _sessionKeyGenerator;
     private readonly ICookieSetting _cookieSetting;
-    private readonly IRedisService _redisService;
+    private readonly IRedisService _redis;
     
     public AuthorizationController(IAuthorization authorization, ICookieSetting cookieSetting, IServerSessionKeyGenerator serverSessionKeyGenerator,
-        IRedisService redisService)
+        IRedisService redis)
     {
         _authorization = authorization;
         _cookieSetting = cookieSetting;
         _sessionKeyGenerator = serverSessionKeyGenerator;
-        _redisService = redisService;
+        _redis = redis;
     }
     
     [HttpGet("login")]
@@ -32,7 +32,7 @@ public class AuthorizationController : ControllerBase
         var authUri = _authorization.CreateAuthorizationUri().ToString();
         var key = _sessionKeyGenerator.Generate();
         
-        await _redisService.WriteAsync(key, _authorization.State);
+        await _redis.WriteAsync(key, _authorization.State);
         
         Response.Cookies.Append("_userSessionKey", key.ToString(),
             _cookieSetting.SpotifyStateSessionOptions());
@@ -47,19 +47,26 @@ public class AuthorizationController : ControllerBase
             return Unauthorized("Authorization Error");
         
         var userSessionKey = Request.Cookies["_userSessionKey"] ?? string.Empty;
-        var sessionState = await _redisService.GetAsync(userSessionKey);
+        var sessionState = await _redis.GetAsync(userSessionKey);
         
         if (sessionState != state)
             return BadRequest("Authorization Error, cookie is not correct");
         
-        _ = _redisService.DeleteAsync(new(userSessionKey));
+        _ = _redis.DeleteAsync(new(userSessionKey));
         Response.Cookies.Delete("_userSessionKey");
-        
+
         try
         {
-            var accessToken = await _authorization.TryGetAuthorizationCode(code);
+            var authCode = await _authorization.TryGetAuthorizationCode(code);
+            var accessToken = authCode.AccessToken;
+            
+            if (string.IsNullOrWhiteSpace(accessToken))
+                throw new AccessTokenException();
+            
             var spotify = new SpotifyClient(accessToken);
-            return Ok(spotify);
+            var user = await spotify.UserProfile.Current();
+            
+            return Ok(user);
         }
         catch (NoAuthorizationCodeException ex)
         {
@@ -72,6 +79,10 @@ public class AuthorizationController : ControllerBase
         catch (AccessTokenException ex)
         {
             return Unauthorized(ex.Message);
+        }
+        catch (APIException ex)
+        {
+            return BadRequest(ex.Message);
         }
         catch (Exception ex)
         {

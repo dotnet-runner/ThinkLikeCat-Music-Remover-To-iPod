@@ -2,6 +2,6 @@ namespace SpotifyApiWorker.Services.Contracts;
 
 public interface ICookieSetting
 {
-    CookieOptions SessionOptions();
+    CookieOptions SessionOptions(TimeSpan age);
     CookieOptions SpotifyStateSessionOptions();
 }
